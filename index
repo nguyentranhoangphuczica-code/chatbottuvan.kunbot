@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KunBot</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Times New Roman", Times, serif;
+      background: linear-gradient(
+        90deg,
+        rgba(125, 177, 255, 0.72) 0%,
+        rgba(195, 217, 255, 0.825) 25%,
+        rgba(207, 232, 255, 0.705) 50%,
+        rgba(251, 251, 251, 0.22) 100%);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #ffffffaa;
+      backdrop-filter: blur(5px);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      color: #333;
+    }
+
+    header h2 {
+      font-size: 20px;
+      margin-top: 5px;
+      color: #444;
+    }
+
+    main {
+      flex: 1;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+    }
+
+    td {
+      padding: 10px 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* 🟢 Nút mở chatbot */
+    #chat-button {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #4fa3ff;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 15px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    #chat-button:hover {
+      background: #2f88ff;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Nhóm CloAI</h1>
+    <h2>Đồ án: Chatbot tư vấn thương hiệu Sữa Kun</h2>
+  </header>
+
+  <main>
+    <h2>THÀNH VIÊN NHÓM</h2>
+    <table>
+      <tr>
+        <td>Hoàng Phúc</td>
+        <td>Ngọc Anh</td>
+        <td>Ngọc Trinh</td>
+        <td>Phong Đạt</td>
+        <td>Bảo Nhi</td>
+        <td>Yến Như</td>
+      </tr>
+    </table>
+  </main>
+
+  <footer>
+    © 2025 - Zica
+  </footer>
+
+  <!-- 🟢 Nút mở Chatbot -->
+  <button id="chat-button">💬 Mở Chatbot Kun</button>
+
+  <!-- ✅ Chatbot Kun -->
+  <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
+  <script>
+    let kunChat = null;
+
+    document.getElementById("chat-button").addEventListener("click", function() {
+      if (!kunChat) {
+        kunChat = new CozeWebSDK.WebChatClient({
+          config: {
+            bot_id: '7563705108333346832', // ✅ bot ID của bạn
+          },
+          componentProps: {
+            title: 'KunBot',
+            layout: 'float', // hiển thị nổi
+          },
+          auth: {
+            type: 'token',
+            token: 'pat_53BhvU446M1TfU5N1aVbsEYO9vyarKZWz4tRwzVJeqL4dIzJVwvixHp2juDgMrVR',
+            onRefreshToken: function () {
+              return 'pat_53BhvU446M1TfU5N1aVbsEYO9vyarKZWz4tRwzVJeqL4dIzJVwvixHp2juDgMrVR';
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
