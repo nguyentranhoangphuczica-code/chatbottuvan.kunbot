@@ -3,23 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KunBot</title>
+  <title>KunBot - Chatbot Sữa Kun</title>
   <style>
+    /* 🌈 Hiệu ứng nền động */
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
     body {
       margin: 0;
       font-family: "Times New Roman", Times, serif;
-      background: linear-gradient(
-        90deg,
-        rgba(125, 177, 255, 0.72) 0%,
-        rgba(195, 217, 255, 0.825) 25%,
-        rgba(207, 232, 255, 0.705) 50%,
-        rgba(251, 251, 251, 0.22) 100%);
+      background: linear-gradient(270deg, #aee1ff, #fff8e1, #c2e9fb);
+      background-size: 600% 600%;
+      animation: bgMove 15s ease infinite;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    /* 🌟 Hiệu ứng fade-in */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* 🧭 Thanh điều hướng */
+    nav {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    nav a {
+      color: #0077cc;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      text-decoration: underline;
+      color: #00aaff;
     }
 
     header {
+      position: relative;
       background: #ffffffaa;
       backdrop-filter: blur(5px);
       padding: 20px;
@@ -27,10 +59,23 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
+    /* 🧸 Logo Kun */
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      width: 80px;
+      transition: 0.3s;
+    }
+    .logo:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
     header h1 {
       margin: 0;
       font-size: 28px;
       color: #333;
+      text-shadow: 0 0 5px rgba(255,255,255,0.7);
     }
 
     header h2 {
@@ -43,6 +88,49 @@
       flex: 1;
       text-align: center;
       padding: 40px 20px;
+    }
+
+    /* 💬 Giới thiệu KunBot */
+    .intro {
+      background: rgba(255,255,255,0.7);
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 15px;
+      width: 80%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .intro h2 {
+      color: #0077cc;
+    }
+
+    /* 🤖 Demo Chatbot */
+    .demo-chat {
+      background: #fff9;
+      width: 70%;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .demo-chat img {
+      width: 150px;
+      margin-bottom: 15px;
+    }
+    .chat-btn {
+      background: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .chat-btn:hover {
+      background: #0077cc;
+      transform: scale(1.05);
     }
 
     table {
@@ -60,6 +148,7 @@
       color: #333;
     }
 
+    /* 💡 Footer chi tiết */
     footer {
       text-align: center;
       padding: 15px;
@@ -67,65 +156,132 @@
       font-size: 14px;
       color: #444;
     }
+    footer a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
 
-    /* 🟢 Nút mở chatbot */
-    
+    /* 🟢 Mũi tên chỉ chatbot */
+    .arrow {
+      position: fixed;
+      right: 110px;
+      bottom: 90px;
+      font-size: 40px;
+      color: #00aaff;
+      transform: rotate(-45deg);
+      animation: bounce 1.2s infinite alternate;
+      text-shadow: 0 0 8px rgba(0, 170, 255, 0.7);
+      z-index: 9999;
+    }
+    .arrow-text {
+      position: fixed;
+      right: 160px;
+      bottom: 150px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #0077cc;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+      animation: fadeText 1.5s infinite alternate;
+      z-index: 9999;
+    }
+
+    @keyframes bounce {
+      from { transform: rotate(-45deg) translateY(0); }
+      to { transform: rotate(-45deg) translateY(-10px); }
+    }
+
+    @keyframes fadeText {
+      from { opacity: 1; }
+      to { opacity: 0.4; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- 🧭 Menu -->
+  <nav>
+    <a href="#gioi-thieu">Giới thiệu</a>
+    <a href="#thanh-vien">Thành viên</a>
+    <a href="#demo">Chatbot</a>
+  </nav>
+
+  <!-- 🧸 Header -->
   <header>
+    <img class="logo" src="https://logos-world.net/wp-content/uploads/2024/01/KUN-Logo-New.png" alt="KUN Logo">
     <h1>Nhóm CloAI</h1>
     <h2>Đồ án: Chatbot tư vấn thương hiệu Sữa Kun</h2>
   </header>
 
   <main>
-    <h2>THÀNH VIÊN NHÓM</h2>
-    <h3> Lớp 25DQCA1</h3>
-    <table>
-      <tr>
-        <td>Hoàng Phúc</td>
-        <td>Ngọc Anh</td>
-        <td>Ngọc Trinh</td>
-        <td>Phong Đạt</td>
-        <td>Bảo Nhi</td>
-        <td>Yến Như</td>
-      </tr>
-      <tr>
-        <td>25806100115</td>
-        <td>25806100116</td>
-        <td>25806100117</td>
-        <td>25806100118</td>
-        <td>25806100119</td>
-        <td>25806100120</td>
-      </tr>
-    </table>
+    <!-- 💬 Giới thiệu KunBot -->
+    <section id="gioi-thieu" class="intro">
+      <h2>💬 Giới thiệu KunBot</h2>
+      <p>
+        KunBot là trợ lý ảo thân thiện của thương hiệu Sữa Kun – được thiết kế để giúp người dùng tìm hiểu thông tin sản phẩm, 
+        tham gia hoạt động truyền thông và tương tác vui nhộn.  
+        Với hình ảnh vui tươi, năng động và giọng điệu gần gũi, KunBot mang đến trải nghiệm độc đáo, hướng tới trẻ em và phụ huynh.
+      </p>
+    </section>
+
+    <!-- 👩‍💻 Thành viên -->
+    <section id="thanh-vien">
+      <h2>THÀNH VIÊN NHÓM</h2>
+      <h3>Lớp 25DQCA1</h3>
+      <table>
+        <tr>
+          <td>Hoàng Phúc</td>
+          <td>Ngọc Anh</td>
+          <td>Ngọc Trinh</td>
+          <td>Phong Đạt</td>
+          <td>Bảo Nhi</td>
+          <td>Yến Như</td>
+        </tr>
+        <tr>
+          <td>25806100115</td>
+          <td>25806100116</td>
+          <td>25806100117</td>
+          <td>25806100118</td>
+          <td>25806100119</td>
+          <td>25806100120</td>
+        </tr>
+      </table>
+    </section>
+
+    
   </main>
 
+  <!-- 💡 Footer -->
   <footer>
-    © 2025 - Zica
+    © 2025 - Nhóm CloAI | Đồ án Chatbot KunBot  
+    <br>Liên hệ: <a href="nguyentranhoangphuc.zica@Gmail.com">mail</a>
   </footer>
 
+  <!-- 🟢 Mũi tên hướng dẫn -->
+  <div class="arrow-text">Nhấn vào đây để trò chuyện với KunBot!</div>
+  <div class="arrow">⬇️</div>
 
-
-  <!-- ✅ Chatbot Kun -->
+  <!-- ✅ Chatbot Kun (Coze) -->
   <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
-<script>
-  new CozeWebSDK.WebChatClient({
-    config: {
-      bot_id: '7563705108333346832',
-    },
-    componentProps: {
-      title: 'Coze',
-    },
-    auth: {
-      type: 'token',
-      token: 'pat_f7XrpGeU79h0BYRqlhOMBzDXuYltsQbiSom1meB0t73Jb5rE4SVjU9NJ6PzSf10e',
-      onRefreshToken: function () {
-        return 'pat_f7XrpGeU79h0BYRqlhOMBzDXuYltsQbiSom1meB0t73Jb5rE4SVjU9NJ6PzSf10e'
+  <script>
+    new CozeWebSDK.WebChatClient({
+      config: {
+        bot_id: '7563705108333346832',
+      },
+      componentProps: {
+        title: 'Coze',
+      },
+      auth: {
+        type: 'token',
+        token: 'pat_f7XrpGeU79h0BYRqlhOMBzDXuYltsQbiSom1meB0t73Jb5rE4SVjU9NJ6PzSf10e',
+        onRefreshToken: function () {
+          return 'pat_f7XrpGeU79h0BYRqlhOMBzDXuYltsQbiSom1meB0t73Jb5rE4SVjU9NJ6PzSf10e';
+        }
       }
-    }
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
+
