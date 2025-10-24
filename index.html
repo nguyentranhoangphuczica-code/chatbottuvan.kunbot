@@ -69,25 +69,7 @@
     }
 
     /* 🟢 Nút mở chatbot */
-    #chat-button {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: #4fa3ff;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      padding: 15px 25px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: 0.3s;
-    }
-
-    #chat-button:hover {
-      background: #2f88ff;
-      transform: scale(1.05);
-    }
+    
   </style>
 </head>
 
@@ -124,34 +106,26 @@
     © 2025 - Zica
   </footer>
 
-  <!-- 🟢 Nút mở Chatbot -->
-  <button id="chat-button">💬 Mở Chatbot Kun</button>
+
 
   <!-- ✅ Chatbot Kun -->
   <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
-  <script>
-    let kunChat = null;
-
-    document.getElementById("chat-button").addEventListener("click", function() {
-      if (!kunChat) {
-        kunChat = new CozeWebSDK.WebChatClient({
-          config: {
-            bot_id: '7563705108333346832', // ✅ bot ID của bạn
-          },
-          componentProps: {
-            title: 'KunBot',
-            layout: 'float', // hiển thị nổi
-          },
-          auth: {
-            type: 'token',
-            token: 'pat_53BhvU446M1TfU5N1aVbsEYO9vyarKZWz4tRwzVJeqL4dIzJVwvixHp2juDgMrVR',
-            onRefreshToken: function () {
-              return 'pat_53BhvU446M1TfU5N1aVbsEYO9vyarKZWz4tRwzVJeqL4dIzJVwvixHp2juDgMrVR';
-            }
-          }
-        });
+<script>
+  new CozeWebSDK.WebChatClient({
+    config: {
+      bot_id: '7563705108333346832',
+    },
+    componentProps: {
+      title: 'Coze',
+    },
+    auth: {
+      type: 'token',
+      token: 'pat_f7XrpGeU79h0BYRqlhOMBzDXuYltsQbiSom1meB0t73Jb5rE4SVjU9NJ6PzSf10e',
+      onRefreshToken: function () {
+        return 'pat_f7XrpGeU79h0BYRqlhOMBzDXuYltsQbiSom1meB0t73Jb5rE4SVjU9NJ6PzSf10e'
       }
-    });
-  </script>
+    }
+  });
+</script>
 </body>
 </html>
